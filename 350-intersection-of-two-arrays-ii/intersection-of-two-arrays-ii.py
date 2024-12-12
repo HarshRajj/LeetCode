@@ -3,19 +3,12 @@ class Solution:
         a = Counter(nums1)
         b = Counter(nums2)
         ans = []
-        # c ={}
-        # for i in a.keys():
-        #     c[i] = min(a[i],b[i])
         
-        # for k , cnt in c.items() :
-        #     ans.extend([k]*cnt)
-        # return ans
+        inter = a & b
 
-        for i in a:
-            if i in b:
-                ans.extend([i]*min(a[i],b[i]))
+        for k , val in inter.items():
+            ans.extend([k]*val)
         return ans
-
 
         
         
