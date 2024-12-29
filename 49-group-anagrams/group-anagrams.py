@@ -17,7 +17,7 @@ class Solution:
             else:
 
                 dic[k] =[strs[i]]
-        for key ,value in dic.items():
+        for value in dic.values():
             ans.append(value)
         return ans 
                          
