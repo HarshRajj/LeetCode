@@ -17,7 +17,7 @@ class Solution:
             if boxes[i+1] == '1' :
                 rightcnt+=1 
             rightcost += rightcnt 
-            ans[i]+= rightcost
+            ans[i] += rightcost
         
         return ans
 
