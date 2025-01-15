@@ -1,25 +1,32 @@
 class Solution:
     def minimizeXor(self, num1: int, num2: int) -> int:
-        setbits = bin(num2).count('1')  # Count of set bits in num2
-        res = 0
+        bits1 = bin(num1).count("1")
+        bits2 = bin(num2).count("1")
 
-        # First loop: Use the set bits in num1 from high to low
-        for i in range(31, -1, -1):
-            if num1 & (1 << i):
-                res |= (1 << i)
-                setbits -= 1
-            if setbits == 0:
-                break
-
-        # Second loop: Set the remaining bits from low to high
-        for i in range(32):
-            if setbits == 0:
-                break
-            if not (res & (1 << i)):  # If the bit is not already set
-                res |= (1 << i)
-                setbits -= 1
-
-        return res
+        if bits1 == bits2:
+            return num1
+        
+        if bits1 > bits2:
+            r = num1
+            remove = bits1 - bits2
+            x = 1
+            while remove > 0:
+                if r & x > 0:
+                    r ^= x
+                    remove -= 1
+                x <<= 1
+            return r
+        
+        if bits1 < bits2:
+            r = num1
+            add = bits2 - bits1
+            x = 1
+            while add > 0:
+                if r & x == 0:
+                    r |= x
+                    add -= 1
+                x <<= 1
+            return r
 
 
         
