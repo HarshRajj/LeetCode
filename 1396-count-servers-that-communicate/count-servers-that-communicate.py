@@ -10,8 +10,7 @@ class Solution:
                 if grid[i][j] == 1:
                     row[i] += 1     
                     col[j] += 1   
-
-        
+    
         ans = 0
         iso = 0
         for i in range(m):
