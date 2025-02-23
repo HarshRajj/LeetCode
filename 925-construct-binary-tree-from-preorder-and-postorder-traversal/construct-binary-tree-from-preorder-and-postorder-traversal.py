@@ -6,15 +6,27 @@
 #         self.right = right
 class Solution:
     def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        if not postorder:
-            return None
-        val = postorder.pop()
-        node = TreeNode(val)
-        if not postorder:
-            return node
+        n  = len(postorder)
+        postvalind = {} 
+        for i , num in enumerate (postorder) :
+            postvalind[num] = i 
 
-        i = postorder.index(preorder[1])
-        node.left = self.constructFromPrePost(preorder[1:i+2], postorder[:i+1])
-        node.right = self.constructFromPrePost(preorder[i+2:], postorder[i+1:])
-        return node       
+        def build(i1, i2, j ) :
+            if i1 > i2 :
+                return None 
+            
+            root = TreeNode( preorder [ i1 ] ) 
+            if i1 != i2 :
+                left_val = preorder[ i1 + 1 ] 
+                mid = postvalind[left_val] 
+                leftsize = mid - j + 1
+                root.left = build (i1 + 1 , i1+ leftsize , j )
+                root.right = build (i1 + leftsize + 1 , i2 , mid+1 )
+            return root  
+        return build (0 , n-1, 0 )
+
+
+
+
+        
         
