@@ -1,17 +1,4 @@
 class Solution:
-    # fn to find power of a number recursively x-raised to power y !
-    '''
-    def power(base, exp):
-        if exp == 0 :
-            return 1 
-
-        if exp%2 == 0:
-            return power(base*base, exp//2)
-
-        else:
-            return base*power(base*base, exp//2)
-    '''
-
     def power(self,base, exp):
         MOD = 10**9 + 7
         ans = 1 
@@ -30,4 +17,5 @@ class Solution:
 
         return (self.power(5,even)*self.power(4,odd))%MOD
 
-        
+
+       
