@@ -1,14 +1,14 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
         freq = Counter(s)
-        cnt = 0
-        for key in freq :
-            if freq[key]%2 == 0 :
-                cnt+= 2 
-            else :
-                cnt+=1 
+        ans = len(s)
+        for key, val in freq.items() :
+            while val>=3:
+                val-=2
+                ans-=2
+ 
 
-        return cnt
+        return ans
 
 
         
