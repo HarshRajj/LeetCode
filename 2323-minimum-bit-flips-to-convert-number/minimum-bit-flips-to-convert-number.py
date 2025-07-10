@@ -9,7 +9,7 @@ class Solution:
 
         ans = start^goal 
         count = 0
-
+        #  Now count the number of set bits in the XOR found
         for i in range(31):
             if ans & (1<<i) :
                 count +=1
