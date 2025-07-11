@@ -4,12 +4,11 @@ class Solution:
         n2 = float('inf')
 
         for num in nums :
-            n3 = num 
-
-            if n1>= n3 :
-                n1 = n3
-            elif n2>= n3 :
-                n2 = n3 
+        
+            if n1>= num :
+                n1 = num
+            elif n2>= num :
+                n2 = num 
 
             else :
                 return True 
