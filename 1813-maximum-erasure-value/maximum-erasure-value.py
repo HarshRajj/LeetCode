@@ -1,31 +1,21 @@
-from typing import List
-
+        
+        
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        idx = {}
-        maxi = 0
-        current_sum = 0
-        start = 0  # The only new variable needed for optimization
+        seen = set()
+        left = 0
+        summ = 0
+        max_sum = 0
 
-        for i in range(len(nums)):
-            # If a duplicate is found that is part of our current window
-            if nums[i] in idx and idx[nums[i]] >= start:
-                # Find the position of the previous duplicate
-                prev_idx = idx[nums[i]]
+        for right in range(len(nums)):
+            while nums[right] in seen:
                 
-                # Instead of resetting, subtract the values from the left of the
-                # window until the old duplicate is gone.
-                for j in range(start, prev_idx + 1):
-                    current_sum -= nums[j]
+                seen.remove(nums[left])
+                summ -= nums[left]
+                left += 1
                 
-                # Slide the window's start forward
-                start = prev_idx + 1
-
-            # Add the current element to the window and update its index
-            current_sum += nums[i]
-            idx[nums[i]] = i
-            
-            # Update the maximum sum found so far
-            maxi = max(maxi, current_sum)
-            
-        return maxi
+            seen.add(nums[right])
+            summ += nums[right]
+            max_sum = max(max_sum, summ)
+        
+        return max_sum
