@@ -1,0 +1,31 @@
+class Solution:
+    def solve(self, idx, target, powers, dp, MOD):
+        if target == 0:
+            return 1
+        if idx >= len(powers) or target < 0:
+            return 0
+        if dp[idx][target] != -1:
+            return dp[idx][target]
+        
+        take = 0
+        if powers[idx] <= target:
+            take = self.solve(idx + 1, target - powers[idx], powers, dp, MOD)
+        
+        not_take = self.solve(idx + 1, target, powers, dp, MOD)
+        
+        dp[idx][target] = (take + not_take) % MOD
+        return dp[idx][target]
+
+    def numberOfWays(self, n, x):
+        MOD = 10**9 + 7
+        powers = []
+        i = 1
+        while True:
+            val = i ** x
+            if val > n:
+                break
+            powers.append(val)
+            i += 1
+        
+        dp = [[-1] * (n + 1) for _ in range(len(powers))]
+        return self.solve(0, n, powers, dp, MOD)
