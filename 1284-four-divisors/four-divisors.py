@@ -6,7 +6,8 @@ class Solution:
             for i in range(2,int(math.sqrt(num))+1) :
                 if num % i == 0 :
                     div.append(i)
-                    if i != num//i : div.append(num//i)
+                    if i != num//i :
+                        div.append(num//i)
                     
 
             return div 
