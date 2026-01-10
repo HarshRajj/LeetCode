@@ -16,8 +16,6 @@ class Solution:
         for i in range(n - 1, -1, -1):
             
             prev = dp[m] 
-            
-            # Update the last element (base case: if s2 is empty, delete s1[i])
             dp[m] += ord(s1[i])
 
             for j in range(m - 1, -1, -1):
