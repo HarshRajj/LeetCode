@@ -1,22 +1,20 @@
 class Solution:
     def minMirrorPairDistance(self, nums: List[int]) -> int:
-        def rev(n) : 
-            ans = 0
-            while n>0 :
-                n, rem = divmod(n, 10)
-                ans = 10 * ans + rem
-
-            return ans
         dic = {}
-        dist = inf
+        dist = float('inf')
+
         for i, num in enumerate(nums):
-            r = rev(num)
+            rev = int(str(num)[::-1])
+
             if num in dic :
-                dist = min(dist, i-dic[num])
+                cur = i - dic[num]
 
-            dic[r] = i 
+                if cur < dist :
+                    dist = cur
 
-        return -1 if dist == inf else dist
+            dic[rev] = i
 
+        return -1 if dist == float('inf') else dist
 
+                    
         
