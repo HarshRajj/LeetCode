@@ -1,16 +1,13 @@
 class Solution:
+    from collections import Counter
     def smallestPalindrome(self, s: str) -> str:
 
         n = len(s)
-        if n<=1 :
-            return s 
-        t = ''.join(sorted(s[:n//2]))
-        if n%2 == 1 :
-            m = n//2
-            return t + s[m] + t[::-1]
-        else :
-            return t + t[::-1]
-
+        freq = Counter(s[:n // 2])
+        st = "abcdefghijklmnopqrstuvwxyz"
+        h = ''.join([ch * freq[ch] for ch in st]) 
+        mid = s[n // 2] if n % 2 != 0 else ""
+        return h + mid + h[::-1]
         
 
         
